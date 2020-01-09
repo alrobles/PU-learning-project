@@ -113,10 +113,17 @@ roc.normal.x=unlist(attr(perf,"x.values"))
 roc.normal.y=unlist(attr(perf,"y.values"))
 
 rocsvm=data.frame(ejeX=c(roc.pu.x,roc.normal.x),ejeY=c(roc.pu.y,roc.normal.y),
+<<<<<<< HEAD
                Metodo=c(rep("Biased SVM",length(roc.pu.x)),rep("SVM est?ndar",length(roc.normal.x))))
 
 graficaroc = ggplot(data=rocsvm,aes(x=ejeX,y=ejeY))+geom_line(aes(colour=Metodo),size=1.5)+xlab("1-especificidad")+
   ylab("sensibilidad") + theme_classic() + theme(legend.position=c(0.5,0.5))
+=======
+               Metodo=c(rep("Biased SVM",length(roc.pu.x)),rep("SVM estándar",length(roc.normal.x))))
+
+graficaroc=ggplot(data=rocsvm,aes(x=ejeX,y=ejeY))+geom_line(aes(colour=Metodo),size=1.5)+xlab("1-especificidad")+
+  ylab("sensibilidad")+theme_classic()+theme(legend.position=c(0.5,0.5))
+>>>>>>> 874c994594c45361f19b19882ad17e55eac5a871
 
 #comparar lift de ambos modelos 
 pred=prediction(attr(predict(PU.svm,test,probability=TRUE),"prob")[,2],test$var_obj)
@@ -130,13 +137,20 @@ lift.normal.x=unlist(attr(perf,"x.values"))
 lift.normal.y=unlist(attr(perf,"y.values"))
 
 liftsvm=data.frame(ejeX=c(lift.pu.x,lift.normal.x),ejeY=c(lift.pu.y,lift.normal.y),
+<<<<<<< HEAD
                   Metodo=c(rep("Biased SVM",length(lift.pu.x)),rep("SVM est?ndar",length(lift.normal.x))))
+=======
+                  Metodo=c(rep("Biased SVM",length(lift.pu.x)),rep("SVM estándar",length(lift.normal.x))))
+>>>>>>> 874c994594c45361f19b19882ad17e55eac5a871
 
 graficalift=ggplot(data=liftsvm,aes(x=ejeX,y=ejeY))+geom_line(aes(colour=Metodo),size=1.5)+xlab("P(y=1|x)")+
   ylab("Lift")+ylim(1,1.3)+xlim(1,0.01)+theme_classic()+ 
   theme(legend.position=c(0.7,0.5))
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 874c994594c45361f19b19882ad17e55eac5a871
 library(gridExtra)
 grid.arrange(graficaroc,graficalift,nrow=1,ncol=2)
 
